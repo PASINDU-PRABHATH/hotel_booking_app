@@ -165,10 +165,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             ),
           ),
           const CategoryNameWidget(
-            categoryName: 'Discover new Places',
+            categoryName: 'Discover New Places',
           ),
           SizedBox(
-            height: 275,
+            height: 276,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
