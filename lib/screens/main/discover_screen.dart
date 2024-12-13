@@ -160,7 +160,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 MostRelevantWidget(),
                 MostRelevantWidget(),
                 MostRelevantWidget(),
-                MostRelevantWidget(),
               ],
             ),
           ),
@@ -177,7 +176,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                 DiscoverNewPlaceWidget(),
                 DiscoverNewPlaceWidget(),
                 DiscoverNewPlaceWidget(),
-                DiscoverNewPlaceWidget(),
               ],
             ),
           ),
@@ -186,5 +184,3 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
     );
   }
 }
-
-
