@@ -3,6 +3,7 @@ import 'package:hotel_management_app/screens/main/booking_screen.dart';
 import 'package:hotel_management_app/screens/main/discover_screen.dart';
 import 'package:hotel_management_app/screens/main/favorite_screen.dart';
 import 'package:hotel_management_app/screens/main/message_screen.dart';
+import 'package:hotel_management_app/services/firebase_services.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -20,6 +21,13 @@ class _MainPageState extends State<MainPage> {
   ];
 
   int screenNo = 0;
+
+  @override
+  void initState() {
+    
+    super.initState();
+    FirebaseServices.getHotels();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,13 +85,13 @@ class _MainPageState extends State<MainPage> {
           Icon(
             icon,
             color: index == screenNo ? Colors.white : Colors.grey,
-            size:index == screenNo?24: 23,
+            size: index == screenNo ? 24 : 23,
           ),
           Text(
             navigationText,
             style: TextStyle(
                 color: index == screenNo ? Colors.white : Colors.grey,
-                fontSize: index == screenNo? 13 : 12),
+                fontSize: index == screenNo ? 13 : 12),
           ),
         ],
       ),
