@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+
+import 'package:hotel_management_app/providers/hotel_provider.dart';
+
 import 'package:hotel_management_app/utility/app_colors.dart';
 import 'package:hotel_management_app/utility/app_const.dart';
 import 'package:hotel_management_app/widget/category_name_widget.dart';
 
 import 'package:hotel_management_app/widget/most_relevant_widget.dart';
 import 'package:hotel_management_app/widget/new_placed_widget.dart';
+import 'package:provider/provider.dart';
 
 class DiscoverScreen extends StatefulWidget {
   const DiscoverScreen({super.key});
@@ -151,18 +155,26 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             categoryName: 'Most relevant',
           ),
           SizedBox(
-            height: AppConst.mostRelevantCardHeight,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: const [
-                MostRelevantWidget(),
-                MostRelevantWidget(),
-                MostRelevantWidget(),
-                MostRelevantWidget(),
-                MostRelevantWidget(),
-              ],
-            ),
-          ),
+              height: AppConst.mostRelevantCardHeight,
+              child: Consumer<HotelProvider>(
+                  builder: (context, hotelProvider, child) {
+                return hotelProvider.allHotelData.isEmpty
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: hotelProvider.allHotelData.length,
+                        itemBuilder: (context, index) {
+                          return MostRelevantWidget(
+                            title: hotelProvider.allHotelData[index].title!,
+                            rating: hotelProvider.allHotelData[index].rating!,
+                            mainImage:
+                                hotelProvider.allHotelData[index].mainImage!,
+                                amenities: hotelProvider.allHotelData[index].amenities!,
+                          );
+                        });
+              })),
           const CategoryNameWidget(
             categoryName: 'Discover New Places',
           ),

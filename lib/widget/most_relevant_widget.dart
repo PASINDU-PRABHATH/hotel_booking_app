@@ -3,8 +3,16 @@ import 'package:hotel_management_app/utility/app_const.dart';
 import 'package:hotel_management_app/widget/facility_widget.dart';
 
 class MostRelevantWidget extends StatelessWidget {
+  final String title;
+  final num rating;
+  final String mainImage;
+  final List<dynamic> amenities;
   const MostRelevantWidget({
     super.key,
+    required this.title,
+    required this.rating,
+    required this.mainImage,
+    required this.amenities,
   });
 
   @override
@@ -32,8 +40,7 @@ class MostRelevantWidget extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(AppConst.radius),
-                  child: Image.network(
-                      "https://images.unsplash.com/photo-1696930769037-483030fab0b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"),
+                  child: Image.network(mainImage,width: 350,height:220 ,fit: BoxFit.cover,),
                 ),
                 Positioned(
                   top: 20,
@@ -54,42 +61,38 @@ class MostRelevantWidget extends StatelessWidget {
                 ),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Epitom Hotel in Kurunagala"),
+                      Text(title),
                       Row(
                         children: [
-                          Icon(Icons.star_rounded),
-                          SizedBox(
+                          const Icon(Icons.star_rounded),
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text("4.96 (217)")
+                          Text("$rating")
                         ],
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      FacilityWidget(
-                        facility: '4 guests',
+                  SizedBox(
+                    width: 350,
+                    height: 40,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: amenities.length,
+                      itemBuilder: (context, index) => FacilityWidget(
+                        facility: amenities[index],
                       ),
-                      FacilityWidget(
-                        facility: '2 bedrooms',
-                      ),
-                      FacilityWidget(
-                        facility: '4 guests',
-                      ),
-                      FacilityWidget(
-                        facility: '4 guests',
-                      ),
-                    ],
+                    ),
                   ),
-                  Row(
+                 
+                  const Row(
                     children: [Text("\$ ${155}")],
                   ),
                 ],
