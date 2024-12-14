@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     
     super.initState();
-    FirebaseServices.getHotels();
+    FirebaseServices.getHotels(context);
   }
 
   @override
