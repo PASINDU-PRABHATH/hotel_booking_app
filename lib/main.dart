@@ -2,6 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hotel_management_app/main_page.dart';
 import 'package:hotel_management_app/providers/hotel_provider.dart';
+import 'package:hotel_management_app/screens/auth/auth_screen.dart';
+import 'package:hotel_management_app/screens/auth/sign_in_screen.dart';
+import 'package:hotel_management_app/screens/auth/sign_up_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const AuthScreen(),
     );
   }
 }
